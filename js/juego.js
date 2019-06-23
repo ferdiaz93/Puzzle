@@ -40,7 +40,6 @@ y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora. 
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
-  return false;
   for (var i = 0; i < grilla.length; i++) {
     for (var j = 0; j < grilla[i].length; j++) {
       if (grilla[i][j] > grilla[i][j + 1]) {
@@ -56,7 +55,7 @@ function chequearSiGano() {
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 function mostrarCartelGanador() {
-  alert("GANASTE");
+  alert("GANASTE, FELICITACIONES!");
   //COMPLETAR
 }
 
@@ -128,8 +127,6 @@ function moverEnDireccion(direccion) {
     nuevaColumnaPiezaVacia = columnaVacia + 1;
     // COMPLETAR
   }
-  console.log(grilla);
-  console.log("nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia", nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
   /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia. 
   Para que esta parte del código funcione correctamente deberás haber implementado 
   las funciones posicionValida, intercambiarPosicionesGrilla y actualizarPosicionVacia */
@@ -137,7 +134,7 @@ function moverEnDireccion(direccion) {
   if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
     intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
     actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
-
+    actualizarUltimoMovimiento(direccion);
     //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
 
   }
@@ -200,6 +197,7 @@ function intercambiarPosicionesDOM(idPieza1, idPieza2) {
 en la pantalla, representado con una flecha. */
 function actualizarUltimoMovimiento(direccion) {
   ultimoMov = document.getElementById('flecha');
+  console.log("hola")
   switch (direccion) {
     case codigosDireccion.ARRIBA:
       ultimoMov.textContent = '↑';
